@@ -170,29 +170,29 @@ flowchart LR
 ---
 # 6. Arsitektur Sistem
 ```mermaid
-graph TD
+graph TD;
+    subgraph Client;
+        A1[Flutter App];
+        A2[Local DB (Drift)];
+    end;
 
-    subgraph Client
-        A1[Flutter App]
-        A2[Local DB (Drift)]
-    end
+    subgraph Backend;
+        B1[API Gateway];
+        B2[Business Logic Service];
+        B3[Payment Service];
+    end;
 
-    subgraph Backend
-        B1[API Gateway]
-        B2[Business Logic Service]
-        B3[Payment Service]
-    end
+    subgraph Database;
+        C1[(MySQL Cloud)];
+        C2[(Drift Local)];
+    end;
 
-    subgraph "Cloud Database"
-        C1[(MySQL Cloud)]
-    end
-
-    A1 --> A2
-    A1 -->|REST API| B1
-    B1 --> B2
-    B1 --> B3
-    B2 --> C1
-    C1 -->|Sync Data| A2
+    A1 --> A2;
+    A1 -->|REST API| B1;
+    B1 --> B2;
+    B1 --> B3;
+    B2 --> C1;
+    C1 -->|Sync Data| C2;
 ```
 
 # Penjelasan Komponen Sistem
