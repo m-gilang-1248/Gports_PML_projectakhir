@@ -172,28 +172,30 @@ flowchart LR
 ```mermaid
 graph TD
 
-    subgraph Client
+    %% Mendefinisikan semua node di dalam 'box'
+    box "Client"
         A1[Flutter App]
         A2[Local DB (Drift)]
     end
 
-    subgraph Backend
+    box "Backend"
         B1[API Gateway]
         B2[Business Logic Service]
         B3[Payment Service]
     end
 
-    subgraph "Cloud Database"
+    box "Database"
         C1[(MySQL Cloud)]
+        C2[(Drift Local)]
     end
 
-    %% Bagian Hubungan/Links (didefinisikan setelah semua subgraph selesai)
+    %% Mendefinisikan semua hubungan/panah di akhir
     A1 --> A2
     A1 -->|REST API| B1
     B1 --> B2
     B1 --> B3
     B2 --> C1
-    C1 -->|Sync Data| A2
+    C1 -->|Sync Data| C2
 ```
 
 # Penjelasan Komponen Sistem
