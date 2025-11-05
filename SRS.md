@@ -172,24 +172,48 @@ flowchart LR
 ```mermaid
 graph TD
 
-    %% Mendefinisikan semua node di dalam 'box'
-    box "Client"
-        A1[Flutter App]
-        A2[Local DB (Drift)]
-    end
+    %% == KELOMPOK 1: CLIENT ==
+    %% Judul grup dibuat sebagai node biasa tanpa border
+    Client_Title("<b>Client</b>")
+    style Client_Title fill:none,stroke:none,font-weight:bold,font-size:16px
 
-    box "Backend"
-        B1[API Gateway]
-        B2[Business Logic Service]
-        B3[Payment Service]
-    end
+    %% Node di dalam grup Client
+    A1[Flutter App]
+    A2[Local DB (Drift)]
 
-    box "Database"
-        C1[(MySQL Cloud)]
-        C2[(Drift Local)]
-    end
+    %% Paksa node berada di bawah judul dengan link tak terlihat
+    Client_Title ~~~ A1 & A2
 
-    %% Mendefinisikan semua hubungan/panah di akhir
+
+    %% == KELOMPOK 2: BACKEND ==
+    %% Judul grup
+    Backend_Title("<b>Backend</b>")
+    style Backend_Title fill:none,stroke:none,font-weight:bold,font-size:16px
+
+    %% Node di dalam grup Backend
+    B1[API Gateway]
+    B2[Business Logic Service]
+    B3[Payment Service]
+
+    %% Paksa node berada di bawah judul
+    Backend_Title ~~~ B1 ---> B2 & B3
+
+
+    %% == KELOMPOK 3: DATABASE ==
+    %% Judul grup
+    Database_Title("<b>Database</b>")
+    style Database_Title fill:none,stroke:none,font-weight:bold,font-size:16px
+
+    %% Node di dalam grup Database
+    C1[(MySQL Cloud)]
+    C2[(Drift Local)]
+
+    %% Paksa node berada di bawah judul
+    Database_Title ~~~ C1 & C2
+
+
+    %% == HUBUNGAN ANTAR KELOMPOK (PANAH ASLI) ==
+    %% Definisikan ulang semua panah yang terlihat di bagian akhir
     A1 --> A2
     A1 -->|REST API| B1
     B1 --> B2
